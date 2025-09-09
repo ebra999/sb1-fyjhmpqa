@@ -1,0 +1,20 @@
+services:
+  # تعريف خدمة الويب لتطبيقك
+  - type: web
+    # اسم الخدمة في Render (يمكنك تغييره)
+    name: whatsapp-baileys-api
+    # بيئة التشغيل هي Node.js
+    env: node
+    # اختيار الخطة (الطبقة المجانية مناسبة للبدء)
+    plan: free
+    # أمر بناء المشروع (تثبيت الاعتماديات)
+    buildCommand: 'npm install'
+    # أمر بدء تشغيل الخادم
+    startCommand: 'node index.js'
+    
+    # --- هذا هو الجزء الأهم لتطبيقك ---
+    # تعريف قرص تخزين دائم للحفاظ على جلسة واتساب
+    disks:
+      - name: whatsapp-session-data # اسم القرص
+        mountPath: /usr/src/app/whatsapp_session # المسار الذي سيتم حفظ المجلد فيه
+        sizeGB: 1 # أصغر حجم متاح وهو كافٍ جداً
