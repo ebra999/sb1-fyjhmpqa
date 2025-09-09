@@ -1,7 +1,18 @@
 services:
   - type: web
-    name: whatsapp-baileys-api
+    name: whatsapp-supabase-api
     env: node
-    plan: free
+    # يمكنك الآن استخدام الخطة المجانية بأمان
+    plan: free 
     buildCommand: 'npm install'
     startCommand: 'node index.js'
+    # تعريف متغيرات البيئة التي سيستخدمها التطبيق
+    envVars:
+      - key: SESSION_NAME
+        value: whatsapp_session
+      - key: SUPABASE_URL
+        # قم بإنشاء هذا المتغير السري في لوحة تحكم Render
+        fromSecret: true 
+      - key: SUPABASE_ANON_KEY
+        # قم بإنشاء هذا المتغير السري في لوحة تحكم Render
+        fromSecret: true
